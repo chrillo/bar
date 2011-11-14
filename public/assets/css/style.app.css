@@ -1,0 +1,245 @@
+body{
+padding-top: 0px!important;
+-webkit-user-select:none;
+}
+.header{
+background: #000;
+height: 60px;
+width: 100%;
+}
+.header .button{
+	display: block;
+	float: left;
+	color: #fff;
+	cursor: pointer;
+	line-height: 60px;
+	vertical-align: middle;
+	padding: 0px 30px;
+	font-family: 'Georgia';
+	font-style: italic;
+	font-weight: bold;
+	-webkit-transition: all 0.5s ease-out;
+}
+.header .button:active{
+	background: #fff;
+	color: #000;
+	-webkit-box-shadow: 0px 0px 2px #fff;
+}
+.header .button.active{
+	color: #fe6a00!important;
+}
+.header .exit{
+float: right;
+}
+.lock{
+width: 300px;
+margin:100px auto;
+-webkit-user-select:none;
+}
+.lock .pin-input{
+width: 288px;
+display: block;
+border:1px solid #eee;
+font-size: 20px;
+padding: 5px;
+background: #fff;
+border-radius: 0px;
+-webkit-box-shadow: none;
+font-family: 'Georgia';
+	font-style: italic;
+}
+.lock .num-key,.lock .clear-key,.lock .enter-key{
+font-family: 'Georgia';
+	font-style: italic;
+width: 100px;
+height: 100px;
+display: block;
+-webkit-transition: all 0.3s ease-out;	
+float: left;
+cursor: pointer;
+text-align: center;
+line-height: 100px;
+vertical-align:middle;
+-webkit-box-shadow: inset 0px 0px 2px #d0d0d0;
+}
+.lock .num-key:active,.lock .clear-key:active,.lock .enter-key:active,.bar-item:active{
+background: #ddd;
+
+-webkit-box-shadow: inset 0px 0px 2px #333; 
+}
+
+.lock .clear{
+clear: both;
+}
+.bar-items{
+	width: 80%;
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	min-height: 100%;
+}
+.bar-categories{
+    position: absolute;
+    left:0px;
+    
+    top:0px;
+   -webkit-transform:translate3d(0px,0px,0px);
+}
+.bar{
+
+}
+.bar-category{
+	float:left;
+	background: #fff;
+}
+.bar-item{
+display: block;
+float: left;
+position: relative;
+overflow: hidden;
+padding: 20px 0px;
+text-align: left;
+width: 33%;
+height: 40px;
+cursor: pointer;
+-webkit-transition: all 0.3s ease-out;
+-webkit-box-shadow: inset 0px 0px 2px #e6e6e6;	
+}
+
+.bar-item .item-name{
+	display: block;
+	font-size: 20px;
+	padding:0px 30px;
+	
+}
+.bar-item .item-price{
+	padding:0px 30px;
+	display: block;
+	font-size: 12px;
+	color: #999;
+}
+.bar-item .item-count{
+	-webkit-transition: all 1s ease-out!important;
+	position: absolute;
+	right: -3px;
+	bottom: -5px;
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 50px;
+	color:#eee;
+	font-weight: bold;
+	font-family: 'Georgia';
+	font-style: italic;
+	font-weight: bold;
+}
+.bar-item:active .item-count{
+	color: #fff;
+}
+.bar-item.update{
+
+}
+.bar-item.update .item-count{
+	-webkit-transition: all 1s ease-out!important;
+	color:#000!important;
+
+}
+.tray{
+	border-left: 1px solid #ccc;
+	position: absolute;
+	right: 0px;
+	top:60px;
+	bottom:0px;
+	width: 20%;
+	background: #fff;
+	-webkit-transition: all 0.5s ease-out;
+	-webkit-box-shadow: 0px 0px 2px #ccc;
+}
+.tray-item{
+	-webkit-transition: all 0.5s ease-out;
+	color: #333;
+	padding: 15px 5px;
+	font-size: 12px;
+	cursor: pointer;
+	width: 100;
+	clear:both;
+	border-bottom: 1px solid #f6f6f6;
+}
+
+
+.tray-item .item-price{
+	float: right;
+
+}
+.tray-item:active{
+	background: #e67f7f;
+	color: #fff;
+}
+.tray .user-name{
+display: block;
+font-size: 12px;
+padding: 2px;
+color: #999;
+display: none;
+}
+.tray .bar-tab{
+display: block;
+font-size: 40px;
+font-weight: bold;
+text-align: center;
+padding: 15px 0px 20px 0px;
+font-family: 'Georgia';
+font-style: italic;
+font-weight: bold;
+display: none;
+}
+.order{
+font-size: 20px;
+display: block;
+padding: 10px;
+color: #ddd;
+background: #f9f9f9;
+cursor: pointer;
+-webkit-transition: all 0.3s ease-out;
+-webkit-box-shadow:0px 0px 2px #fff;
+text-shadow: 0px 1px 1px #fff;
+}
+.order.items{
+color: #fff;
+background: #ff4d01;
+
+border:1px solid #fff;
+-webkit-box-shadow:0px 0px 2px #666;
+text-shadow: 0px -1px #b73801;
+}
+.order.no-items{
+
+}
+.order.items small{
+color: #fff;
+}
+.order small{
+color: #999;
+font-size: 12px;
+}
+
+.order.disabled{
+
+}
+.order.items:active{
+background: #fe6a00;
+-webkit-box-shadow: inset 0px 0px 2px #333; 	
+}
+
+h2{
+font-family: 'Georgia';
+font-style: italic;
+font-weight: bold;
+padding: 20px;
+}
+p{
+padding: 10px 20px;
+}
+.credits{
+padding: 10px 20px;
+color: #999;
+}

@@ -1,0 +1,135 @@
+* { margin: 0; padding: 0; }
+body { background-color: #fff; font-family:Helvetica, sans-serif; font-size: 16px; line-height: 20px;width: 100%;height: 100%;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-font-smoothing:antialiased;
+padding-top: 50px;
+ }
+.clear{
+clear: both;
+}
+#wrapper{
+width: 100%;
+max-width: 960px;
+margin: 0px auto;
+}
+h1,h2,h3,h4{
+padding-bottom: 10px;
+margin-bottom: 0px;
+vertical-align: middle;
+}
+.total{
+font-size: 32px;
+line-height: 32px;
+vertical-align: middle;
+padding-right: 20px;
+font-weight: bold;
+display: inline-block;
+}
+.login{
+width: 320px;
+margin: 0px auto;
+text-align: center;
+}
+.login .btn{
+
+}
+
+.right{
+float: right;
+}
+.container{
+width: 100%!important;
+max-width: 940px!important;
+}
+.items-table th{
+width: 33%;
+}
+.align-right{
+text-align: right;
+}
+
+/* items view */
+.category-label{
+margin: 1%;
+}
+.category-label a{
+margin-left: 5px;
+}
+.category-items{
+clear: both;
+
+
+}
+.item{
+width: 30%;
+margin: 0.5% 0.5% 0.5% 0.5%;
+padding: 1% 0.9%;
+float: left;
+
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+background: #fff;
+
+float: left;
+cursor: pointer;
+position: relative;
+line-height: 20px;
+vertical-align: middle;
+box-shadow: 0px 0px 2px #999;
+-moz-box-shadow: 0px 0px 2px #999;
+-webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+      
+          font-size: 0.9em;
+}
+.item.sss{
+ outline: 0;
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6); 
+
+}
+.item-link{
+display: block;
+width: 100%;
+text-decoration: none!important;
+}
+.item .item-label{
+	color: #333;
+}
+.item .item-price{
+
+	color: #999;
+
+}
+.item .item-delete-btn{
+display: none;
+}	
+.item:hover .item-delete-btn{
+display: block;
+position: absolute;
+top:50%;
+width: 40px;
+margin-top: -10px;
+height: 20px;
+vertical-align: middle;
+line-height: 20px;
+right: 10px;
+
+z-index: 1;
+}
+
+@media only screen and (max-width: 480px) {
+label{
+width: 60px;
+}
+.item{
+width: 93%;
+margin: 1% 2%;
+padding: 4% 1%;
+}
+
+
+}	
+	

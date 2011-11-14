@@ -1,0 +1,30 @@
+<?php echo Form::open(); ?>
+	<p>
+		<?php echo Form::label('Title', 'title'); ?>: 
+<?php echo Form::input('title', Input::post('title', isset($item) ? $item->title : '')); ?>
+	</p>
+	<p>
+		<?php echo Form::label('Price', 'price'); ?>: 
+<?php echo Form::input('price', Input::post('price', isset($item) ? $item->price : '')); ?>
+	</p>
+	
+	<p>
+		<?php echo Form::label('Category', 'category'); ?>: 
+		<?php 
+		$id='none';
+		if(isset($item)){$id=$item->category_id;}
+		echo Form::select('category_id',$id, $categories);
+	 ?>
+	</p>
+
+	<div class="well">
+	<?php echo Form::submit('save','Save',array('class'=>'btn primary')); ?>	
+	<?php echo Html::anchor('admin/items', 'Back',array('class'=>'btn')); ?>
+	<?php if(isset($item)){
+		echo Html::anchor('admin/items/delete/'.$item->id, 'delete', array('class'=>'danger btn pull-right item-delete-btn','onclick' => "return confirm('Are you sure?')")); 
+	
+	} ?>
+	
+	</div>
+
+<?php echo Form::close(); ?>
