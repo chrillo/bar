@@ -23,7 +23,7 @@ class Controller_Api extends Controller_Rest {
 	}
 	public function action_index()
 	{
-		$this->response->body ="";
+		$this->response->body ="api";
 	}
 	public function get_userbypin()
     {	

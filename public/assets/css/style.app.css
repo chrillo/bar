@@ -149,6 +149,7 @@ cursor: pointer;
 	right: 0px;
 	top:60px;
 	bottom:0px;
+	overflow: hidden;
 	width: 20%;
 	background: #fff;
 	-webkit-transition: all 0.5s ease-out;
