@@ -30,6 +30,7 @@ class Controller_Admin_Dashboard extends Controller_Admin {
         	$total+=$sale->price;
         }
         
+        $data['irgendwas']="ein wert";
         $data['days']=$days;
         $data['total']=$total;
         $data['totalCount']=$totalCount;
@@ -43,6 +44,7 @@ class Controller_Admin_Dashboard extends Controller_Admin {
        	
         $this->template->content=View::factory('admin/dashboard',$data);
 	}
+	
 	private function get_sales($days){
 		return $consumptions=DB::select()->from('consumptions')->as_object('Model_Consumption')->where('created_at','>=',(time()-$days*24*3600))->and_where('status','!=',0)->execute()->as_array();
 	}

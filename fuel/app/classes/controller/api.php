@@ -32,7 +32,9 @@ class Controller_Api extends Controller_Rest {
         $query=Model_User::find()->where('pin', $pin);
         if($query->count()){;
         	$user=$query->get_one();
-        	
+        	$user->last_login=time();
+        
+        	$user->save();
         	$consumptions=DB::select()->from('consumptions')->as_object('Model_Consumption')->where('user_id',$user->id)->where('status',1)->execute();
     	
 			$this->response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');

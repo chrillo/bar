@@ -9,6 +9,16 @@
 	<h2>Users</h2>
 	<h3>Total: <?php echo $users; ?></h3>
 </div>
+<div>
+	irgendwas = <?php echo $irgendwas; ?>
+</div>
+
+
+
+
+
+
+
 <?php echo Asset::js('raphael.min.js'); ?>
 <?php echo Asset::js('g.raphael.min.js'); ?>
 <?php echo Asset::js('g.pie.js'); ?>

@@ -33,9 +33,7 @@ class Controller_Admin extends Controller_Template {
     		if($_POST)
     		{
 			
-    		    // Ok, you pressed the submit button. let's go over
-			
-    		    // first of all, let's get a auth object
+    		   
     		   
 				
 				
