@@ -92,7 +92,9 @@ class Controller_Admin_Users extends Controller_Admin {
 			
 			//exit();
 			$query = DB::update('consumptions');
-			$query->where('item_id','!=',$items);
+			foreach($items as $item){
+				$query->where('item_id','!=',$item['id']);
+			}
 			$query->where('status',1);
 			$query->where('user_id',$user->id);	
 			$query->value('status',time());
@@ -174,7 +176,11 @@ class Controller_Admin_Users extends Controller_Admin {
 			$categories=$cquery->execute()->as_array();
 			$iquery=DB::select('id')->from('items')->where('category_id',$categories);
 			$items=$iquery->execute()->as_array();
-			$query->where('item_id','!=',$items);
+		
+			foreach($items as $item){
+				$query->where('item_id','!=',$item['id']);
+			}
+			
 		} 
 		$consumptions=$query->execute()->as_array();
 		return $consumptions;
