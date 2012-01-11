@@ -33,9 +33,6 @@ class Controller_Admin extends Controller_Template {
     		if($_POST)
     		{
 			
-    		   
-    		   
-				
 				
     		    // check the credentials. This assumes that you have the previous table created
     		    if($auth->login($_POST['username'],$_POST['password']))

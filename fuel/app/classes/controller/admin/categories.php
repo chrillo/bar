@@ -27,6 +27,7 @@ class Controller_Admin_Categories extends Controller_Admin {
 			$category = Model_Category::factory(array(
 				'label' => Input::post('label'),
 				'user_id' => $user['user_id'][1],
+				'ignore'=>Input::post('ignore'),
 				'order'=> Input::post('order')
 			));
 
@@ -60,6 +61,8 @@ class Controller_Admin_Categories extends Controller_Admin {
 			$category->label = Input::post('label');
 			$category->user_id = $user['user_id'][1];
 			$category->order =Input::post('order');
+			$category->ignore=Input::post('ignore',0);
+		
 			try{
 				$category->save();
 				Session::set_flash('notice',$this->flash_success('Updated category #' . $id));

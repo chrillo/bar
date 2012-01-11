@@ -32,6 +32,7 @@ foreach($consumptions as $consumption){
 	<td>".date("d.m.Y h:i",$consumption->created_at)."</td>
 	<td>".$consumption->order_id."</td> 
 	<td>".Html::anchor('admin/users/removeconsumption/'.$user->id."/".$consumption->id, 'Remove')."</td>
+	<td>".Html::anchor('admin/users/payconsumption/'.$user->id."/".$consumption->id, 'Mark paid')."</td>
 	</tr>";	
 }
 }
@@ -49,6 +50,7 @@ foreach($consumptions as $consumption){
 	<th>Total (<?php echo $total; ?>€)</th>
 	<th>Time (<?php echo $time." day"; if($time!=1){echo "s";} ?>)</th>
 	<th>Order Id (<?php echo $orders." order"; if($orders!=1){echo "s";} ?>)</th>
+	<th></th>
 	<th></th>
 </tr>
 <?php

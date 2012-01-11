@@ -68,11 +68,31 @@ class Controller_Admin_Users extends Controller_Admin {
 			Response::redirect('admin/users/view/'.$user->id);
 		
 	}
+	public function action_payconsumption($id=null,$consumption_id=null){
+		$user = Model_User::find($id);
+		
+		
+			$query = DB::update('consumptions');
+			$query->where('id',$consumption_id);
+			$query->where('status',1);
+			$query->where('user_id',$user->id);	
+			$query->value('status',time());
+			$query->execute();
+			Session::set_flash('notice', $this->flash_success('Paid consumption #'.$consumption_id));
+		
+		Response::redirect('admin/users/view/'.$user->id);	
+	}
 	public function action_payment($id = null,$sum =null){
 		$user = Model_User::find($id);
 		if(Input::method() == 'POST'){
+			$query=DB::select('id')->from('categories')->where('ignore',1);
+			$categories=$query->execute()->as_array();
+			$query=DB::select('id')->from('items')->where('category_id',$categories);
+			$items=$query->execute()->as_array();
+			
+			//exit();
 			$query = DB::update('consumptions');
-
+			$query->where('item_id','!=',$items);
 			$query->where('status',1);
 			$query->where('user_id',$user->id);	
 			$query->value('status',time());
@@ -80,7 +100,7 @@ class Controller_Admin_Users extends Controller_Admin {
 			Response::redirect('admin/users/view/'.$user->id);
 			
 		}else{
-		$consumptions=$this->get_consumptions($id);
+		$consumptions=$this->get_consumptions($id,true);
 		$sum=0;
 		$total=sizeof($consumptions);
 		foreach($consumptions as $consumption){
@@ -146,8 +166,18 @@ class Controller_Admin_Users extends Controller_Admin {
 
 	}
 	/* simpe method to fetch unpaid consumptions for a user */
-	private function get_consumptions($id){
-		return $consumptions=DB::select()->from('consumptions')->as_object('Model_Consumption')->where('user_id',$id)->where('status',1)->execute()->as_array();
+	private function get_consumptions($id,$ignored=false){
+		$query=DB::select()->from('consumptions')->as_object('Model_Consumption')->where('user_id',$id)->where('status',1);
+		
+		if($ignored){ 
+		 	$cquery=DB::select('id')->from('categories')->where('ignore',1);
+			$categories=$cquery->execute()->as_array();
+			$iquery=DB::select('id')->from('items')->where('category_id',$categories);
+			$items=$iquery->execute()->as_array();
+			$query->where('item_id','!=',$items);
+		} 
+		$consumptions=$query->execute()->as_array();
+		return $consumptions;
 	}
 	
 	

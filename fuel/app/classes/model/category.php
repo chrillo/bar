@@ -15,6 +15,11 @@ class Model_Category extends Orm\Model {
             'label' => 'User',
             'validation' => array('required')
         ),
+        'ignore' =>array(
+        	'type'=>'int',
+        	'label' => 'Ignore',
+        	'validation' => array('required'),       
+        ),
         'order' => array('type' => 'int', 'label' => 'Order'),
         'created_at' => array('type' => 'int', 'label' => 'Created At'),
         'updated_at' => array('type' => 'int', 'label' => 'Updated At')
