@@ -11,6 +11,7 @@ class Create_users {
 			'username' => array('constraint' => 255, 'type' => 'varchar'),
 			'password' => array('constraint' => 255, 'type' => 'varchar'),
 			'email' => array('constraint' => 255, 'type' => 'varchar'),
+			'saldo' => array('constraint' => 11, 'type' => 'float'),
 			'profile_fields' => array('type' => 'text'),
 			'group' => array('constraint' => 11, 'type' => 'int'),
 			'last_login' => array('constraint' => 20, 'type' => 'int'),
@@ -30,6 +31,7 @@ class Create_users {
 				'group' =>  '',
 				'last_login' =>  '',
 				'login_hash' =>'',
+				'saldo' =>0
 			));
 		$user->save();
 		

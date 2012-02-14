@@ -7,11 +7,14 @@
 		<th>Username</th>
 		<th>Email</th>
 		<th>Last login</th>
+		<th>Unpaid</th>
 		<th></th>
 	</tr>
 
-	<?php foreach ($users as $user): ?>	<tr>
-
+	<?php 
+		$total=0;
+	foreach ($users as $user): ?>	<tr>
+		<?php $total+=$user->saldo; ?>
 		<td><?php echo $user->username; ?></td>
 		<td><?php echo $user->email; ?></td>
 		<td><?php 
@@ -21,6 +24,7 @@
 			 echo "-";	
 			}
 		 ?></td>
+		<td><?php echo $user->saldo; ?>€</td> 
 		<td>
 			<?php echo Html::anchor('admin/users/view/'.$user->id, 'View'); ?> |
 			<?php echo Html::anchor('admin/users/edit/'.$user->id, 'Edit'); ?> |

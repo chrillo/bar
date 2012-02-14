@@ -19,7 +19,7 @@ class Controller_Admin_Dashboard extends Controller_Admin {
         $totalCount=0;
         
         foreach($sales as $sale){
-        	if($sale->status>1){
+        	if($sale->status!=1){
         		$paid+=$sale->price;
         		$paidCount++;
         	}else{

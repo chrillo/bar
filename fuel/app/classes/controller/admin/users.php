@@ -64,6 +64,7 @@ class Controller_Admin_Users extends Controller_Admin {
 			$query->where('id',$consumption_id);
 			$query->value('status',0);
 			$query->execute();
+			$user->update_saldo();
 			 Session::set_flash('notice', $this->flash_success('Removed consumption #'.$consumption_id));
 			Response::redirect('admin/users/view/'.$user->id);
 		
@@ -78,6 +79,7 @@ class Controller_Admin_Users extends Controller_Admin {
 			$query->where('user_id',$user->id);	
 			$query->value('status',time());
 			$query->execute();
+			$user->update_saldo();
 			Session::set_flash('notice', $this->flash_success('Paid consumption #'.$consumption_id));
 		
 		Response::redirect('admin/users/view/'.$user->id);	
@@ -99,6 +101,7 @@ class Controller_Admin_Users extends Controller_Admin {
 			$query->where('user_id',$user->id);	
 			$query->value('status',time());
 			$query->execute();
+			$user->update_saldo();
 			Response::redirect('admin/users/view/'.$user->id);
 			
 		}else{

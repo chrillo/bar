@@ -23,6 +23,11 @@ class Model_User extends Orm\Model {
             'label' => 'Email',
             'validation' => array('required','valid_email')
         ),
+        'saldo' => array(
+        	'type' =>'int',
+        	'label' => 'Saldo',
+    		'default' =>0
+        ),
         'profile_fields' => array('type' => 'text', 'label' => 'Profile fields'),
         'last_login' => array('type' => 'int', 'label' => 'Last login'),
         'created_at' => array('type' => 'int', 'label' => 'Created At'),
@@ -36,6 +41,15 @@ class Model_User extends Orm\Model {
 		'Orm\\Observer_UpdatedAt' => array('before_save'),
 		'Orm\\Observer_Validation' => array('before_save')
 	);
+	public function update_saldo(){
+		$query = DB::query('SELECT *, SUM(price) as saldo FROM consumptions WHERE user_id='.$this->id.' AND STATUS=1');
+		$result=$query->execute()->as_array();
+		$saldo=$result[0]['saldo'];
+		$this->saldo=$saldo;
+		$this->save();
+		return $saldo;
+	}
+	
 }
 
 /* End of file user.php */
