@@ -30,6 +30,7 @@ class Controller_Admin_Items extends Controller_Admin {
 			$item = Model_Item::factory(array(
 				'title' => Input::post('title'),
 				'price' => Input::post('price'),
+				'cost' => Input::post('cost'),
 				'points' => 0,
 				'category_id'=>Input::post('category_id')
 			));
@@ -58,6 +59,7 @@ class Controller_Admin_Items extends Controller_Admin {
 		
 			$item->title = Input::post('title');
 			$item->price = Input::post('price');
+			$item->cost = Input::post('cost');
 			$item->category_id=Input::post('category_id');
 
 			try{

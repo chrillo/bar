@@ -98,9 +98,12 @@ text-decoration: none!important;
 .item .item-label{
 	color: #333;
 }
-.item .item-price{
+.item .item-price,.item .item-cost{
 
 	color: #999;
+
+}
+.item .item-cost{
 
 }
 .item .item-delete-btn{

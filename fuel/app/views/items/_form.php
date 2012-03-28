@@ -7,7 +7,10 @@
 		<?php echo Form::label('Price', 'price'); ?>: 
 <?php echo Form::input('price', Input::post('price', isset($item) ? $item->price : '')); ?>
 	</p>
-	
+	<p>
+		<?php echo Form::label('Cost', 'cost'); ?>: 
+<?php echo Form::input('cost', Input::post('cost', isset($item) ? $item->cost : '')); ?>
+	</p>
 	<p>
 		<?php echo Form::label('Category', 'category'); ?>: 
 		<?php 

@@ -23,6 +23,7 @@
 				<a href="items/edit/<?php echo $item->id; ?>" class="item-link">
 					<span class="item-label"><?php echo $item->title; ?></span>
 					<span class="item-price"><?php echo $item->price; ?>€</span>
+					<span class="item-cost">/ <?php echo $item->cost; ?>€</span>
 				</a>
 				
 					<?php echo Html::anchor('admin/items/delete/'.$item->id, 'delete', array('class'=>'danger item-delete-btn','onclick' => "return confirm('Are you sure?')")); ?>	
