@@ -19,6 +19,11 @@ class Model_Item extends Orm\Model {
             'label' => 'Cost',
             'validation' => array('required')
         ),
+        'inventory' => array(
+            'type' => 'float',
+            'label' => 'Cost',
+            'validation' => array('required')
+        ),
         'points' => array(
             'type' => 'int',
             'label' => 'Points'

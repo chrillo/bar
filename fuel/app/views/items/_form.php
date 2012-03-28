@@ -12,6 +12,10 @@
 <?php echo Form::input('cost', Input::post('cost', isset($item) ? $item->cost : '')); ?>
 	</p>
 	<p>
+		<?php echo Form::label('Inventory', 'inventory'); ?>: 
+<?php echo Form::input('inventory', Input::post('inventory', isset($item) ? $item->inventory : '')); ?>
+	</p>
+	<p>
 		<?php echo Form::label('Category', 'category'); ?>: 
 		<?php 
 		$id='none';

@@ -31,6 +31,7 @@ class Controller_Admin_Items extends Controller_Admin {
 				'title' => Input::post('title'),
 				'price' => Input::post('price'),
 				'cost' => Input::post('cost'),
+				'inventory' => Input::post('inventory'),
 				'points' => 0,
 				'category_id'=>Input::post('category_id')
 			));
@@ -60,6 +61,7 @@ class Controller_Admin_Items extends Controller_Admin {
 			$item->title = Input::post('title');
 			$item->price = Input::post('price');
 			$item->cost = Input::post('cost');
+			$item->inventory = Input::post('inventory');
 			$item->category_id=Input::post('category_id');
 
 			try{

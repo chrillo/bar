@@ -21,7 +21,7 @@
 		<?php foreach ($items as $item): ?>
 		 	<div class="item">
 				<a href="items/edit/<?php echo $item->id; ?>" class="item-link">
-					<span class="item-label"><?php echo $item->title; ?></span>
+					<span class="item-label"><?php echo $item->title; ?> (<?php echo $item->inventory; ?>)</span>
 					<span class="item-price"><?php echo $item->price; ?>€</span>
 					<span class="item-cost">/ <?php echo $item->cost; ?>€</span>
 				</a>
