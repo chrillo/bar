@@ -2,7 +2,7 @@
 <?php echo Html::anchor('admin/users/create', 'Add new User',array("class"=>"btn primary")); ?>
 </h2>
 
-<table >
+<table  >
 	<tr>
 		<th>Username</th>
 		<th>Email</th>
@@ -13,7 +13,7 @@
 
 	<?php 
 		$total=0;
-	foreach ($users as $user): ?>	<tr>
+	foreach ($users as $user): ?>	<tr class="user <?php echo $user->maxed ? 'maxed' :''; ?>">
 		<?php $total+=$user->saldo; ?>
 		<td><?php echo $user->username; ?></td>
 		<td><?php echo $user->email; ?></td>

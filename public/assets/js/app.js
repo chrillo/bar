@@ -307,6 +307,12 @@ var ItemView = Backbone.View.extend({
 	*/
 	render:function(){
 		var data=this.model.toJSON();
+			console.log(this.model.get("user_count"), parseInt(this.model.get("maxusage")))
+			if(this.model.get("user_count") > parseInt(this.model.get("maxusage")) && parseInt(this.model.get("maxusage"))>0){
+				$(this.el).addClass('item-maxed')
+			}else{
+				$(this.el).removeClass('item-maxed')
+			}
 		var html=ich.item(data);
 		$(this.el).html(html)
 		if(this.model.hasChanged('user_count')){

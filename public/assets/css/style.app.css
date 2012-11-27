@@ -132,6 +132,9 @@ cursor: pointer;
 	font-style: italic;
 	font-weight: bold;
 }
+.bar-item.item-maxed .item-count{
+	color:#fe6a00;
+}
 .bar-item:active .item-count{
 	color: #fff;
 }

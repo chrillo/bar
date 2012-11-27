@@ -24,6 +24,10 @@ class Model_Item extends Orm\Model {
             'label' => 'Cost',
             'validation' => array('required')
         ),
+        'maxusage' => array(
+            'type' => 'int',
+            'label' => 'Max Usage',
+        ),
         'points' => array(
             'type' => 'int',
             'label' => 'Points'

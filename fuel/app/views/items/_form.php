@@ -16,6 +16,10 @@
 <?php echo Form::input('inventory', Input::post('inventory', isset($item) ? $item->inventory : '')); ?>
 	</p>
 	<p>
+		<?php echo Form::label('Max Usage', 'maxusage'); ?>: 
+<?php echo Form::input('maxusage', Input::post('maxusage', isset($item) ? $item->maxusage : '')); ?>
+	</p>
+	<p>
 		<?php echo Form::label('Category', 'category'); ?>: 
 		<?php 
 		$id='none';
