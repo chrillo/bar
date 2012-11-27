@@ -1,5 +1,7 @@
 <h2>
 <?php echo Html::anchor('admin/users/create', 'Add new User',array("class"=>"btn primary")); ?>
+
+<?php echo Html::anchor('admin/users/updateall', 'Update Consumption Count',array('class'=>'btn primary')); ?>
 </h2>
 
 <table  >
@@ -8,6 +10,7 @@
 		<th>Email</th>
 		<th>Last login</th>
 		<th>Unpaid</th>
+		<th>Item count</th>
 		<th></th>
 	</tr>
 
@@ -25,6 +28,22 @@
 			}
 		 ?></td>
 		<td><?php echo $user->saldo; ?>€</td> 
+		<td>
+		<?php
+			 if($user->countcache){
+		
+				
+
+				 foreach($user->countcache as $item){
+				 	if($item->maxusage>0){
+					 	?>
+					 	<small><?php echo  $item->label." ".$item->perItem ?></small><br/>
+					 	<?
+				 	}
+				 }
+			 }
+		?>
+		</td> 
 		<td>
 			<?php echo Html::anchor('admin/users/view/'.$user->id, 'View'); ?> |
 			<?php echo Html::anchor('admin/users/edit/'.$user->id, 'Edit'); ?> |

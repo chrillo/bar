@@ -5,7 +5,7 @@ class Controller_Admin_Users extends Controller_Admin {
 	
 	public function action_index()
 	{
-		$data['users'] = Model_User::find('all');
+		$data['users'] = Model_User::find('all',array('order_by' => 'username'));
 		$this->template->title = "Users";
 		$this->template->content = View::factory('users/index', $data);
 
@@ -20,6 +20,15 @@ class Controller_Admin_Users extends Controller_Admin {
 		$this->template->title = "User: ".$user->username;
 		$this->template->content = View::factory('users/view', $data);
 
+	}
+	
+	public function action_updateall(){
+		$users = Model_User::find('all');
+		foreach($users as $user){
+			$user->update_saldo();
+		}
+		Response::redirect('admin/users');
+		
 	}
 	
 

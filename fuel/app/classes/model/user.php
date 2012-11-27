@@ -33,6 +33,10 @@ class Model_User extends Orm\Model {
         	'label' => 'Maxed',
     		'default' =>0
         ),
+        'countcache' => array(
+        	'data_type'=>'json',
+        	'label'=>'Count Cache'
+        ),
         
         'profile_fields' => array('type' => 'text', 'label' => 'Profile fields'),
         'last_login' => array('type' => 'int', 'label' => 'Last login'),
@@ -45,7 +49,8 @@ class Model_User extends Orm\Model {
 		'Unique' => array('before_insert','before_save'),
 		'Orm\\Observer_CreatedAt' => array('before_insert'),
 		'Orm\\Observer_UpdatedAt' => array('before_save'),
-		'Orm\\Observer_Validation' => array('before_save')
+		'Orm\\Observer_Validation' => array('before_save'),
+		'Orm\\Observer_Typing' => array('before_save', 'after_save', 'after_load')
 	);
 	public function update_saldo(){
 		$query = DB::query('SELECT *, SUM(price) as saldo FROM consumptions WHERE user_id='.$this->id.' AND STATUS=1');
@@ -57,25 +62,29 @@ class Model_User extends Orm\Model {
 		$query = DB::query('SELECT *, COUNT(item_id) as perItem FROM consumptions WHERE user_id='.$this->id.' AND STATUS=1 GROUP BY item_id');
 		$perItems=$query->execute()->as_array();
 		
-		$items_ids = array();
+
+
 		$count_cache = array();
 		foreach($perItems as $perItem){
-			$item_ids[]=$perItem['item_id'];
-			$count_cache[$perItem['item_id']]=$perItem['perItem'];
+		
+			
+			$count_cache[$perItem['item_id']]=array('perItem'=>$perItem['perItem'],'label'=>$perItem['title']);
+		
 		}
 		$items = Model_Item::find('all');
 		$maxed = 0;
 		
 		foreach($items as $item){
 			if(isset($count_cache[$item->id])){
-				if($item->maxusage>0 && $count_cache[$item->id] >$item->maxusage ){
+				if($item->maxusage>0 && $count_cache[$item->id]['perItem'] > $item->maxusage ){
 					$maxed = 1;
 				}
+				$count_cache[$item->id]['maxusage'] = $item->maxusage;
 			}
 		}
-
-		$this->maxed = $maxed;
 		
+		$this->maxed = $maxed;
+		$this->countcache = array_values($count_cache);
 
 		$this->save();
 	
