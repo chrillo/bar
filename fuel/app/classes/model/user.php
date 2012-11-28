@@ -23,6 +23,16 @@ class Model_User extends Orm\Model {
             'label' => 'Email',
             'validation' => array('required','valid_email')
         ),
+        'firstname' => array(
+        	'type' =>'varchar',
+        	'label' => 'Vorname',
+    		'default' =>''
+        ),
+         'lastname' => array(
+        	'type' =>'varchar',
+        	'label' => 'Nachname',
+    		'default' =>''
+        ),
         'saldo' => array(
         	'type' =>'int',
         	'label' => 'Saldo',

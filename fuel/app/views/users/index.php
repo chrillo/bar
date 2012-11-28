@@ -2,6 +2,8 @@
 <?php echo Html::anchor('admin/users/create', 'Add new User',array("class"=>"btn primary")); ?>
 
 <?php echo Html::anchor('admin/users/updateall', 'Update Consumption Count',array('class'=>'btn primary')); ?>
+
+<?php echo Html::anchor('admin/users/export', 'Mail Export',array('class'=>'btn primary')); ?>
 </h2>
 
 <table  >
@@ -10,7 +12,7 @@
 		<th>Email</th>
 		<th>Last login</th>
 		<th>Unpaid</th>
-		<th>Item count</th>
+		<th>Item Count</th>
 		<th></th>
 	</tr>
 

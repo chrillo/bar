@@ -11,6 +11,22 @@ class Controller_Admin_Users extends Controller_Admin {
 
 	}
 	
+	public function action_export(){
+		header("Content-Type: text/plain");
+		header('Content-disposition: attachment; filename=maillist.csv');
+		$users = Model_User::find('all',array('order_by' => array('last_login' => 'desc')));
+		
+		$body = "";
+		foreach ($users as $user):
+	
+		echo $user->firstname.",".$user->lastname.",".$user->email.",".date("d.m.Y",$user->last_login)."\n";
+
+		endforeach; 
+		
+		exit();
+		
+	}
+	
 	public function action_view($id = null)
 	{
 		$user= Model_User::find($id);
@@ -31,6 +47,7 @@ class Controller_Admin_Users extends Controller_Admin {
 		
 	}
 	
+	
 
 	public function action_create($id = null)
 	{
@@ -40,6 +57,8 @@ class Controller_Admin_Users extends Controller_Admin {
 			
 			$user = Model_User::factory(array(
 				'username' => Input::post('username'),
+				'firstname' => Input::post('firstname'),
+				'lastname' => Input::post('lastname'),
 				'password' => \Auth::instance()->hash_password(Input::post('password') || md5(mktime())),
 				'email' => Input::post('email'),
 				'pin' => Input::post('pin'),
@@ -135,6 +154,8 @@ class Controller_Admin_Users extends Controller_Admin {
 
 		if (Input::method() == 'POST'){
 			$user->username = Input::post('username');
+			$user->firstname = Input::post('firstname');
+			$user->lastname = Input::post('lastname');
 			if(Input::post('password')!=""){
 				$user->password = \Auth::instance()->hash_password(Input::post('password'));
 			}

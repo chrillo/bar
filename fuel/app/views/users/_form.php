@@ -4,6 +4,14 @@
 <?php echo Form::input('username', Input::post('username', isset($user) ? $user->username : '')); ?>
 	</p>
 	<p>
+		<?php echo Form::label('Firstname', 'firstname'); ?>: 
+<?php echo Form::input('firstname', Input::post('firstname', isset($user) ? $user->firstname : '')); ?>
+	</p>
+	<p>
+		<?php echo Form::label('Lastname', 'lastname'); ?>: 
+<?php echo Form::input('lastname', Input::post('lastname', isset($user) ? $user->lastname : '')); ?>
+	</p>
+	<p>
 		<?php echo Form::label('Password', 'password'); ?>: 
 <?php echo Form::password('password', Input::post('password', '')); ?>
 	</p>
