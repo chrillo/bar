@@ -12,7 +12,7 @@ class Controller_Admin_Users extends Controller_Admin {
 	}
 	
 	public function action_export(){
-		header("Content-Type: text/plain");
+		header("Content-type: text/csv");
 		header('Content-disposition: attachment; filename=maillist.csv');
 		$users = Model_User::find('all',array('order_by' => array('last_login' => 'desc')));
 		
@@ -26,6 +26,23 @@ class Controller_Admin_Users extends Controller_Admin {
 		exit();
 		
 	}
+	
+	public function action_exportconsumptions(){
+		header("Content-type: text/csv");
+		header('Content-disposition: attachment; filename=consumptions.csv');
+		$users = Model_User::find('all',array('order_by' => array('last_login' => 'desc')));
+		
+		$body = "";
+		foreach ($users as $user):
+	
+		echo $user->username.",".$user->saldo."\n";
+
+		endforeach; 
+		
+		exit();
+		
+	}
+	
 	
 	public function action_view($id = null)
 	{
@@ -163,7 +180,7 @@ class Controller_Admin_Users extends Controller_Admin {
 			$user->pin =  Input::post('pin');
 			$user->profile_fields = Input::post('profile_fields');
 			$user->group = Input::post('group');
-			$user->last_login = Input::post('last_login');
+			//$user->last_login = Input::post('last_login');
 			$user->login_hash = Input::post('login_hash');
 
 			try{

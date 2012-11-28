@@ -3,6 +3,8 @@
 
 <?php echo Html::anchor('admin/users/updateall', 'Update Consumption Count',array('class'=>'btn primary')); ?>
 
+<?php echo Html::anchor('admin/users/exportconsumptions', 'Consumptions Export',array('class'=>'btn primary')); ?>
+
 <?php echo Html::anchor('admin/users/export', 'Mail Export',array('class'=>'btn primary')); ?>
 </h2>
 
@@ -24,7 +26,7 @@
 		<td><?php echo $user->email; ?></td>
 		<td><?php 
 			if($user->last_login>0){
-			 echo date("d.m.Y h:i",$user->last_login);
+			 echo date("d.m.Y H:i",$user->last_login);
 			}else{
 			 echo "-";	
 			}
