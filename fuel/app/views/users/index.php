@@ -35,14 +35,13 @@
 		<td>
 		<?php
 			 if($user->countcache){
-		
-				
-
 				 foreach($user->countcache as $item){
-				 	if($item->maxusage>0){
-					 	?>
-					 	<small><?php echo  $item->label." ".$item->perItem ?></small><br/>
-					 	<?
+				 	if(isset($item->maxusage)){
+					 	if($item->maxusage>0){
+						 	?>
+						 	<small><?php echo  $item->label." ".$item->perItem ?></small><br/>
+						 	<?
+					 	}
 				 	}
 				 }
 			 }
