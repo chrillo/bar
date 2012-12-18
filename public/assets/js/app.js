@@ -13,11 +13,11 @@ var utils={
 /* 
 All the html templates
 */
-var helpTemplate="<h2>1.) I forgot my pin code</h2><p>Please ask Yves or Karin to reset it for you.</p>";
+var helpTemplate="<h2>1.) I forgot my pin code</h2><p>Please ask Yves or Christoph to reset it for you.</p>";
 	helpTemplate+="<h2>2.) I don't have pin code yet</h2><p>See previous answer.</p>";
 	helpTemplate+="<h2>3.) How do I use this?</h2><p>Login with your pin. Tap on the items you took from the bar and click the confirm order button. The items are then added to your bar tab and you can pay for them at a later point in time.</p>";
 	helpTemplate+="<h2>4.) I accidentally put a wrong item on my tab</h2><p>Yves can remove stuff for you. You should generally check your order before tapping the confirm button.</p>";
-	helpTemplate+="<h2>5.) I want pay my bar tab</h2><p>Talk to Yves or Karin</p>";
+	helpTemplate+="<h2>5.) I want pay my bar tab</h2><p>Talk to Yves or Christoph</p>";
 	helpTemplate+="<small class='credits'>created by @christoph_peter with Fuelphp, underscroe.js, backbone.js, jQuery.js,keymaster.js & ICanHaz.js. Code on github https://github.com/chrillo/Bar</small>"
  
 var itemTemplate="<span class='item-name'>{{title}}</span><span class='item-price'>{{price}}€</span><span class='item-count'>{{user_count}}</span>";
