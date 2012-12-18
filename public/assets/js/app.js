@@ -86,7 +86,7 @@ var TrayView = Backbone.View.extend({
 	className:"tray",
 	events:{
 		'click .order':'placeOrder',
-		'touchend .order':'placeOrder'
+		'touchstart .order':'placeOrder'
 	},
 	initialize:function(){
 		_.bindAll(this,"render","appendItem","placeOrder","addItem","removeItem",'clear',"orderComplete","updateBarTab","updateOrder")
@@ -255,7 +255,7 @@ var ItemTrayView = Backbone.View.extend({
 	className:'tray-item',
 	events:{
 		'click':'removeFromTray',
-		'touchend':'removeFromTray'
+		'touchstart':'removeFromTray'
 	},
 	initialize:function(model){
 		_.bindAll(this,"render","removeFromTray")
@@ -270,9 +270,11 @@ var ItemTrayView = Backbone.View.extend({
 		removes the item from the tray
 	*/
 	removeFromTray:function(event){
-		
+		var _this = this;
 		app.trigger("removeFromTray",this.model)
-		$(this.el).remove();
+		$(this.el).addClass("active").slideUp(300)
+		
+		
 		event.preventDefault();
 	}
 	
@@ -286,7 +288,7 @@ var ItemView = Backbone.View.extend({
 	className:'bar-item',
 	events:{
 		'click':'addToTray',
-		'touchend':'addToTray'
+		'touchstart':'addToTray'
 	},
 	initialize:function(model){
 		_.bindAll(this,"render",'addToTray')
@@ -510,7 +512,7 @@ var CategoryBtn = Backbone.View.extend({
 	className:'button',
 	events:{
 		'click' : 'openCategory',
-		'touchend': 'openCategory'
+		'touchstart': 'openCategory'
 	},
 	initialize:function(){
 		_.bindAll(this,'render','openCategory')
@@ -539,9 +541,9 @@ var HeaderView = Backbone.View.extend({
 		'click .help':'help',
 		'click .exit':'lock',
 		'click .locked':'lock',
-		'touchend .help':'help',
-		'touchend .exit':'lock',
-		'touchend .locked':'lock'
+		'touchstart .help':'help',
+		'touchstart .exit':'lock',
+		'touchstart .locked':'lock'
 	},
 	initialize:function(){
 		_.bindAll(this,'render','navigate');
@@ -607,9 +609,9 @@ var LockView = Backbone.View.extend({
 		"click .num-key":"keyInput",
 		"touchstart .num-key":"keyInput",
 		"click .clear-key":"clear",	
-		"touchend .clear-key":"clear",
+		"touchstart .clear-key":"clear",
 		"click .enter-key":"enter",
-		"touchend .enter-key":"enter"		
+		"touchstart .enter-key":"enter"		
 	},
 	initialize:function(){
 		_.bindAll(this,"render","keyInput","enterPin","clear")

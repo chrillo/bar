@@ -174,7 +174,7 @@ cursor: pointer;
 	float: right;
 
 }
-.tray-item:active{
+.tray-item.active{
 	background: #e67f7f;
 	color: #fff;
 }
