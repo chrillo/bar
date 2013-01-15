@@ -35,7 +35,7 @@ class Controller_Admin_Users extends Controller_Admin {
 		$body = "";
 		foreach ($users as $user):
 	
-		echo $user->username.",".$user->saldo."\n";
+		echo $user->firstname.",".$user->lastname.",".$user->saldo."\n";
 
 		endforeach; 
 		
