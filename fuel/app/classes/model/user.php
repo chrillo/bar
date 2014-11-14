@@ -46,9 +46,13 @@ class Model_User extends Orm\Model {
         'countcache' => array(
         	'data_type'=>'json',
         	'label'=>'Count Cache',
-		'default'=>array()
+		      'default'=>array()
         ),
-        
+        'status' => array(
+            'type' =>'varchar',
+            'label' => 'Status',
+            'default' =>''
+        ),
         'profile_fields' => array('type' => 'text', 'label' => 'Profile fields'),
         'last_login' => array('type' => 'int', 'label' => 'Last login'),
         'created_at' => array('type' => 'int', 'label' => 'Created At'),

@@ -5,16 +5,16 @@
  *
  * A basic controller example.  Has examples of how to set the
  * response body and status.
- * 
+ *
  * @package  app
  * @extends  Controller
  */
-  
+
 class Controller_Api extends Controller_Rest {
 
 	/**
 	 * The index action.
-	 * 
+	 *
 	 * @access  public
 	 * @return  void
 	 */
@@ -26,36 +26,43 @@ class Controller_Api extends Controller_Rest {
 		$this->response->body ="api";
 	}
 	public function get_userbypin()
-    {	
+    {
     	$pin=Input::get('pin');
     	if($pin==""){$this->response($this->api_response(500,array("error"=>"bad paremters")));}
         $query=Model_User::find()->where('pin', $pin);
         if($query->count()){;
         	$user=$query->get_one();
+
+
+
         	$user->last_login=time();
-        
+
         	$user->save();
         	$consumptions=DB::select()->from('consumptions')->as_object('Model_Consumption')->where('user_id',$user->id)->where('status',1)->execute();
-    	
+
 			$this->response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
 			$this->response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-			$this->response->set_header('Pragma', 'no-cache');	
-        	$this->response($this->api_response(200,array("user"=>array("username"=>$user->username,"id"=>$user->id,"pin"=>$user->pin),"consumptions"=>$consumptions->as_array())));
+			$this->response->set_header('Pragma', 'no-cache');
+            if($user->status==1){
+                    $this->response($this->api_response(401,array("error"=>"not authorized")));
+            }else{
+        	        $this->response($this->api_response(200,array("user"=>array("username"=>$user->username,"id"=>$user->id,"pin"=>$user->pin),"consumptions"=>$consumptions->as_array())));
+            }
         }else{
         	$this->response($this->api_response(404,array("error"=>"not found")));
         }
     }
     public function get_placeorder(){
-    	
-    	
+
+
     	$pin=Input::get('pin');
     	$items=Input::get('items');
     	if(!isset($pin) || !isset($items) || $items=="" || $pin==""){ echo "bad parameters"; return; }
-    	
+
         $user=Model_User::find()->where('pin', $pin)->get_one();
-     
+
         $items=explode(",",$items);
-       
+
         $consumptions=array();
         $items_cache=array();
         $query = DB::insert('consumptions');
@@ -65,7 +72,7 @@ class Controller_Api extends Controller_Rest {
 			    'item_id',
 			    'price',
 			    'status',
-			    'title',  
+			    'title',
 			    'created_at',
 			    'updated_at',
 			    'order_id')
@@ -73,7 +80,7 @@ class Controller_Api extends Controller_Rest {
 		$time=time();
         foreach($items as $item_id){
         	 $item=@$items_cache[$item_id];
-        	 if(!$item){	
+        	 if(!$item){
         	 	$item=Model_item::find($item_id);
         	 	$items_cache[$item_id]=$item;
         	 }
@@ -84,18 +91,18 @@ class Controller_Api extends Controller_Rest {
 		$this->response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
 		$this->response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
 		$this->response->set_header('Pragma', 'no-cache');
-		$this->response($this->api_response(200,array("order_id"=>$time)));	
+		$this->response($this->api_response(200,array("order_id"=>$time)));
     }
     public function get_updatesaldi(){
-    	
+
     	$users=Model_User::find('all');
     	$saldi=array();
     	foreach($users as $user){
- 
+
     		$saldi[]=$user->update_saldo();
     	}
 		$this->response($this->api_response(200,$saldi));
-    
+
     }
     public function cancelorder(){
     	$pin=Input::get('pin');
@@ -111,7 +118,7 @@ class Controller_Api extends Controller_Rest {
         	$query->execute();
         	$this->response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
 			$this->response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-			$this->response->set_header('Pragma', 'no-cache');	
+			$this->response->set_header('Pragma', 'no-cache');
         	$consumptions=DB::select()->from('consumptions')->as_object('Model_Consumption')->where('user_id',$user->id)->where('status',1)->execute();
         	$this->response($this->api_response(200,$consumptions->as_array()));
        		$user->update_saldo();
@@ -123,23 +130,23 @@ class Controller_Api extends Controller_Rest {
     public function get_consumptions(){
     	$pin=Input::get('pin');
 		if($pin==""){echo "bad parameters"; return;}
-		
+
     	$query=Model_User::find()->where('pin', $pin);
         $user=$query->get_one();
-        
+
         $consumptions=DB::select()->from('consumptions')->as_object('Model_Consumption')->where('user_id',$user->id)->where('status','unpaid')->execute();
-    	
+
     	$this->response($consumptions->as_array());
     }*/
     public function get_items(){
     	$items=DB::select()->from('items')->as_object('Model_Item')->execute();
     	$this->response($items->as_array());
     }
-	
+
 
 	/**
 	 * The 404 action for the application.
-	 * 
+	 *
 	 * @access  public
 	 * @return  void
 	 */

@@ -22,7 +22,14 @@
 	<p>
 				<?php echo Form::label('Pin', 'pin'); ?>: 
 <?php echo Form::input('pin', Input::post('pin', isset($user) ? $user->pin : '')); ?>
-	
+	<p>
+		<?php echo Form::label('Status', 'status'); ?>: 
+		<?php 
+		$status='active';
+		if(isset($user)){$status=$user->status;}
+		echo Form::select('status',$status, array('active','disabled'));
+	 ?>
+	</p>
 <?php echo Form::hidden('profile_fields', ''); ?>
 
 

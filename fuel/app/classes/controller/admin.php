@@ -17,23 +17,23 @@ class Controller_Admin extends Controller_Template {
     public function action_index()
     {
     	Response::redirect('admin/dashboard');
-        
-        
+
+
     }
 	public function action_login()
     {
     	$data = array();
-    	 $auth = Auth::instance();	
+    	 $auth = Auth::instance();
     		if(Auth::check()){
 					Response::redirect('admin');
 					return;
 			}
-				
-    		
+			
+
     		if($_POST)
     		{
-			
-				
+
+
     		    // check the credentials. This assumes that you have the previous table created
     		    if($auth->login($_POST['username'],$_POST['password']))
     		    {
@@ -44,17 +44,17 @@ class Controller_Admin extends Controller_Template {
     		    {
     		        // Oops, no soup for you. try to login again.
     		        // Set some values to repopulate the username field and give some error text back to the view
-			
+
     		        $data['username']    = $_POST['username'];
     		        $data['errors'] = 'Wrong username/password combo. Try again';
     		    }
     		}
-			
+
     		// Show the login form
-    	$this->template->title="";	
+    	$this->template->title="";
     	$this->template->content = View::factory('admin/login',$data);
     }
-    
+
     public function action_logout(){
     	 Auth::instance()->logout();
     	Response::redirect('admin/login');
@@ -65,8 +65,8 @@ class Controller_Admin extends Controller_Template {
 	public function flash_error($text){
 		return "<p class='alert-message error'>".$text."</p>";
 	}
-	
- 
+
+
 }
 
 ?>
