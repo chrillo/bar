@@ -4,7 +4,7 @@
  */
 error_reporting(-1);
 ini_set('display_errors',01);
-
+error_reporting(E_ALL ^ E_DEPRECATED);
 
 
 // Use an anonymous function to keep the global namespace clean

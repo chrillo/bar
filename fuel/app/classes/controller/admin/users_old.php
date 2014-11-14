@@ -134,7 +134,7 @@ class Controller_Admin_Users extends Controller_Admin {
 		if(Input::method() == 'POST'){
 			$query=DB::select('id')->from('categories')->where('ignore',1);
 			$categories=$query->execute()->as_array();
-			$query=DB::select('id')->from('items')->where('category_id','in',$categories);
+			$query=DB::select('id')->from('items')->where('category_id',$categories);
 			$items=$query->execute()->as_array();
 			
 			//exit();
@@ -224,7 +224,7 @@ class Controller_Admin_Users extends Controller_Admin {
 		if($ignored){ 
 		 	$cquery=DB::select('id')->from('categories')->where('ignore',1);
 			$categories=$cquery->execute()->as_array();
-			$iquery=DB::select('id')->from('items')->where('category_id','in',$categories);
+			$iquery=DB::select('id')->from('items')->where('category_id',$categories);
 			$items=$iquery->execute()->as_array();
 		
 			foreach($items as $item){
