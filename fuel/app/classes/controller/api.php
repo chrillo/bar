@@ -139,7 +139,7 @@ class Controller_Api extends Controller_Rest {
     	$this->response($consumptions->as_array());
     }*/
     public function get_items(){
-    	$items=DB::select()->from('items')->as_object('Model_Item')->execute();
+    	$items=DB::select()->from('items')->as_object('Model_Item')->order_by('category_id', 'asc')->order_by('title', 'asc')->execute();
     	$this->response($items->as_array());
     }
 
