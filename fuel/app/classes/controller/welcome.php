@@ -19,7 +19,7 @@ class Controller_Welcome extends Controller_Template {
 	 */
 	public function action_index()
 	{	
-		$items=DB::select("*")->from('items')->execute();
+		$items=DB::select("*")->from('items')->order_by('category_id', 'asc')->order_by('title', 'asc')->execute();
     	$categories=DB::select("*")->from('categories')->order_by('order','asc')->execute();
 		$data['items']=Format::factory( $items->as_array() )->to_json();
 		$data['categories']=Format::factory($categories->as_array())->to_json();
