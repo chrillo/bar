@@ -357,12 +357,19 @@ var CategoryView = Backbone.View.extend({
 	render:function(){
 		$(this.el).html();
 		$(this.el).addClass("category-"+this.model.get("id"));
-		var self=this
-		_(app.itemCollection.models).each(function(item){
-			if(item.get("category_id")==self.model.get("id")){
-			this.appendItem(item)
-			}
-		},this)
+		var self=this;
+		if (self.model.get("favorit")) {
+			var itemsFiltered = _.sortBy(_.filter( app.itemCollection.models, function(it, items) { return it.get("user_count")>0; }), function(si) { return si.get("user_count") * -1; });
+			_.each(itemsFiltered, function(item) {
+				self.appendItem(item);
+			});
+		} else {
+			_(app.itemCollection.models).each(function(item){
+				if(item.get("category_id")==self.model.get("id")){
+					this.appendItem(item)
+				}
+			},this)
+		}
 		$(this.el).append(app.views.trayview.render().el)
 		return this;
 	},
@@ -876,7 +883,7 @@ var MainRouter = Backbone.Router.extend({
 		}
 	
 		if(window.initCategories){
-			app.categoryCollection=new CategoryCollection(initCategories)
+			app.categoryCollection=new CategoryCollection(_.union([{"id":"0","label":"Favorites","order":"0","ignore":"0", "favorit":true}],initCategories));
 			
 		}else{
 			app.categoryCollection=new CategoryCollection();
