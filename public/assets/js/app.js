@@ -496,12 +496,11 @@ var BarView = Backbone.View.extend({
 		},this)
 	},
 	moveCategories:function(x){
-		$('.bar-categories',this.el).css("transition", "none");
-		$('.bar-categories',this.el).css("transform","translate3d("+x+"px,0px,0px)");
+		//$('.bar-categories',this.el).css();
+		$('.bar-categories',this.el).css({ "transition": "none", "-webkit-transform": "translate3d("+x+"px,0px,0px)", "transform": "translate3d("+x+"px,0px,0px)" });
 	},
 	moveCategoriesAnimated:function(x,time){
-		$('.bar-categories',this.el).css("transition", "all "+time+"s ease-out");
-		$('.bar-categories',this.el).css("transform","translate3d("+x+"px,0px,0px)");
+		$('.bar-categories',this.el).css( {"transition": "all "+time+"s ease-out", "-webkit-transform" : "translate3d("+x+"px,0px,0px)", "transform" : "translate3d("+x+"px,0px,0px)"});
 
 	}
 })
