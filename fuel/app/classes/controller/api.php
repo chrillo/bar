@@ -71,11 +71,14 @@ class Controller_Api extends Controller_Rest {
 			    'user_id',
 			    'item_id',
 			    'price',
+                'cost',
+                'profit',
 			    'status',
 			    'title',
 			    'created_at',
 			    'updated_at',
-			    'order_id')
+			    'order_id',
+                'category')
 		);
 		$time=time();
         foreach($items as $item_id){
@@ -84,7 +87,8 @@ class Controller_Api extends Controller_Rest {
         	 	$item=Model_item::find($item_id);
         	 	$items_cache[$item_id]=$item;
         	 }
-        	 $query->values(array($user->id,$item->id,$item->price,1,$item->title,$time,$time,$time));
+             // how do i get the category label out?
+        	 $query->values(array($user->id,$item->id,$item->price,$item->cost,$item->price - $item->cost,1,$item->title,$time,$time,$time, $item->category->label));
         }
 		$query->execute();
 		$user->update_saldo();
