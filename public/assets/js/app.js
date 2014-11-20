@@ -309,7 +309,7 @@ var ItemView = Backbone.View.extend({
 	*/
 	render:function(){
 		var data=this.model.toJSON();
-			console.log(this.model.get("user_count"), parseInt(this.model.get("maxusage")))
+			//console.log(this.model.get("user_count"), parseInt(this.model.get("maxusage")))
 			if(this.model.get("user_count") > parseInt(this.model.get("maxusage")) && parseInt(this.model.get("maxusage"))>0){
 				$(this.el).addClass('item-maxed')
 			}else{
@@ -489,12 +489,13 @@ var BarView = Backbone.View.extend({
 		},this)
 	},
 	moveCategories:function(x){
-		$('.bar-categories',this.el).css("-webkit-transition", "none");
-		$('.bar-categories',this.el).css("-webkit-transform","translate3d("+x+"px,0px,0px)");
+		$('.bar-categories',this.el).css("transition", "none");
+		$('.bar-categories',this.el).css("transform","translate3d("+x+"px,0px,0px)");
 	},
 	moveCategoriesAnimated:function(x,time){
-		$('.bar-categories',this.el).css("-webkit-transition", "all "+time+"s ease-out");
-		$('.bar-categories',this.el).css("-webkit-transform","translate3d("+x+"px,0px,0px)");
+		$('.bar-categories',this.el).css("transition", "all "+time+"s ease-out");
+		$('.bar-categories',this.el).css("transform","translate3d("+x+"px,0px,0px)");
+
 	}
 })
 /* the helpview is just some html text on how to use the app */
