@@ -88,7 +88,7 @@ class Controller_Api extends Controller_Rest {
         	 	$items_cache[$item_id]=$item;
         	 }
              // how do i get the category label out?
-        	 $query->values(array($user->id,$item->id,$item->price,$item->cost,$item->price - $item->cost,1,$item->title,$time,$time,$time, $item->$category->label));
+        	 $query->values(array($user->id,$item->id,$item->price,$item->cost,$item->price - $item->cost,1,$item->title,$time,$time,$time, $item->category->label));
         }
 		$query->execute();
 		$user->update_saldo();
