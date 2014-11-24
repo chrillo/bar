@@ -2,7 +2,7 @@
 
 namespace Fuel\Migrations;
 
-class Add_Cost_Proft_Category_To_Consumptions {
+class Add_cost_profit_category_to_consumption {
 
 	public function up()
 	{
