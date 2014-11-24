@@ -34,7 +34,8 @@ class Controller_Admin_Items extends Controller_Admin {
 				'maxusage' => Input::post('maxusage'),
 				'inventory' => Input::post('inventory'),
 				'points' => 0,
-				'category_id'=>Input::post('category_id')
+				'category_id'=>Input::post('category_id'),
+				'status'=>Input::post('status')
 			));
 
 			try{
@@ -65,6 +66,7 @@ class Controller_Admin_Items extends Controller_Admin {
 			$item->inventory = Input::post('inventory');
 			$item->maxusage = Input::post('maxusage');
 			$item->category_id=Input::post('category_id');
+			$item->status=Input::post('status');
 
 			try{
 				$item->save();

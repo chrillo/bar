@@ -27,6 +27,14 @@
 		echo Form::select('category_id',$id, $categories);
 	 ?>
 	</p>
+	<p>
+		<?php echo Form::label('Status', 'status'); ?>: 
+		<?php 
+		$status='active';
+		if(isset($item)){$status=$item->status;}
+		echo Form::select('status',$status, array('active','disabled'));
+	 ?>
+	</p>
 
 	<div class="well">
 	<?php echo Form::submit('save','Save',array('class'=>'btn primary')); ?>	
