@@ -309,7 +309,7 @@ var ItemView = Backbone.View.extend({
 	*/
 	render:function(){
 		var data=this.model.toJSON();
-			console.log(this.model.get("user_count"), parseInt(this.model.get("maxusage")))
+			//console.log(this.model.get("user_count"), parseInt(this.model.get("maxusage")))
 			if(this.model.get("user_count") > parseInt(this.model.get("maxusage")) && parseInt(this.model.get("maxusage"))>0){
 				$(this.el).addClass('item-maxed')
 			}else{
@@ -357,12 +357,19 @@ var CategoryView = Backbone.View.extend({
 	render:function(){
 		$(this.el).html();
 		$(this.el).addClass("category-"+this.model.get("id"));
-		var self=this
-		_(app.itemCollection.models).each(function(item){
-			if(item.get("category_id")==self.model.get("id")){
-			this.appendItem(item)
-			}
-		},this)
+		var self=this;
+		if (self.model.get("favorit")) {
+			var itemsFiltered = _.sortBy(_.filter( app.itemCollection.models, function(it, items) { return it.get("user_count")>0; }), function(si) { return si.get("user_count") * -1; });
+			_.each(itemsFiltered, function(item) {
+				self.appendItem(item);
+			});
+		} else {
+			_(app.itemCollection.models).each(function(item){
+				if(item.get("category_id")==self.model.get("id")){
+					this.appendItem(item)
+				}
+			},this)
+		}
 		$(this.el).append(app.views.trayview.render().el)
 		return this;
 	},
@@ -489,12 +496,12 @@ var BarView = Backbone.View.extend({
 		},this)
 	},
 	moveCategories:function(x){
-		$('.bar-categories',this.el).css("-webkit-transition", "none");
-		$('.bar-categories',this.el).css("-webkit-transform","translate3d("+x+"px,0px,0px)");
+		//$('.bar-categories',this.el).css();
+		$('.bar-categories',this.el).css({ "transition": "none", "-webkit-transform": "translate3d("+x+"px,0px,0px)", "transform": "translate3d("+x+"px,0px,0px)" });
 	},
 	moveCategoriesAnimated:function(x,time){
-		$('.bar-categories',this.el).css("-webkit-transition", "all "+time+"s ease-out");
-		$('.bar-categories',this.el).css("-webkit-transform","translate3d("+x+"px,0px,0px)");
+		$('.bar-categories',this.el).css( {"transition": "all "+time+"s ease-out", "-webkit-transform" : "translate3d("+x+"px,0px,0px)", "transform" : "translate3d("+x+"px,0px,0px)"});
+
 	}
 })
 /* the helpview is just some html text on how to use the app */
@@ -875,7 +882,7 @@ var MainRouter = Backbone.Router.extend({
 		}
 	
 		if(window.initCategories){
-			app.categoryCollection=new CategoryCollection(initCategories)
+			app.categoryCollection=new CategoryCollection(_.union([{"id":"0","label":"Favorites","order":"0","ignore":"0", "favorit":true}],initCategories));
 			
 		}else{
 			app.categoryCollection=new CategoryCollection();
