@@ -37,6 +37,12 @@ class Model_Item extends Orm\Model {
             'label' => 'Category',
             'validation' => array('required')
         ),
+        'status' => array(
+            'type' =>'varchar',
+            'label' => 'Status',
+            'default' =>''
+        ),
+
         'created_at' => array('type' => 'int', 'label' => 'Created At'),
         'updated_at' => array('type' => 'int', 'label' => 'Updated At')
     );
